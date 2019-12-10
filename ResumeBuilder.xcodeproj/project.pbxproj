@@ -16,6 +16,12 @@
 		951615C5239ED53300F325CD /* ResumeBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951615C4239ED53300F325CD /* ResumeBuilderTests.swift */; };
 		951615D0239ED53300F325CD /* ResumeBuilderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951615CF239ED53300F325CD /* ResumeBuilderUITests.swift */; };
 		951615DE239ED5C000F325CD /* ResumeSectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951615DD239ED5C000F325CD /* ResumeSectionTableViewController.swift */; };
+		951615E5239FF51800F325CD /* Applicant+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951615DF239FF51800F325CD /* Applicant+CoreDataClass.swift */; };
+		951615E6239FF51800F325CD /* Applicant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951615E0239FF51800F325CD /* Applicant+CoreDataProperties.swift */; };
+		951615E7239FF51800F325CD /* Job+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951615E1239FF51800F325CD /* Job+CoreDataClass.swift */; };
+		951615E8239FF51800F325CD /* Job+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951615E2239FF51800F325CD /* Job+CoreDataProperties.swift */; };
+		951615E9239FF51800F325CD /* Reference+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951615E3239FF51800F325CD /* Reference+CoreDataClass.swift */; };
+		951615EA239FF51800F325CD /* Reference+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951615E4239FF51800F325CD /* Reference+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +57,12 @@
 		951615CF239ED53300F325CD /* ResumeBuilderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeBuilderUITests.swift; sourceTree = "<group>"; };
 		951615D1239ED53300F325CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		951615DD239ED5C000F325CD /* ResumeSectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeSectionTableViewController.swift; sourceTree = "<group>"; };
+		951615DF239FF51800F325CD /* Applicant+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Applicant+CoreDataClass.swift"; path = "../ResumeBuilder/CoreData Objects/Applicant+CoreDataClass.swift"; sourceTree = "<group>"; };
+		951615E0239FF51800F325CD /* Applicant+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Applicant+CoreDataProperties.swift"; path = "../ResumeBuilder/CoreData Objects/Applicant+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		951615E1239FF51800F325CD /* Job+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Job+CoreDataClass.swift"; path = "../ResumeBuilder/CoreData Objects/Job+CoreDataClass.swift"; sourceTree = "<group>"; };
+		951615E2239FF51800F325CD /* Job+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Job+CoreDataProperties.swift"; path = "../ResumeBuilder/CoreData Objects/Job+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		951615E3239FF51800F325CD /* Reference+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Reference+CoreDataClass.swift"; path = "../ResumeBuilder/CoreData Objects/Reference+CoreDataClass.swift"; sourceTree = "<group>"; };
+		951615E4239FF51800F325CD /* Reference+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Reference+CoreDataProperties.swift"; path = "../ResumeBuilder/CoreData Objects/Reference+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +121,7 @@
 				951615B8239ED53200F325CD /* LaunchScreen.storyboard */,
 				951615BB239ED53200F325CD /* Info.plist */,
 				951615B3239ED53000F325CD /* ResumeBuilder.xcdatamodeld */,
+				951615EB239FF52300F325CD /* CoreData Objects */,
 			);
 			path = ResumeBuilder;
 			sourceTree = "<group>";
@@ -129,6 +142,20 @@
 				951615D1239ED53300F325CD /* Info.plist */,
 			);
 			path = ResumeBuilderUITests;
+			sourceTree = "<group>";
+		};
+		951615EB239FF52300F325CD /* CoreData Objects */ = {
+			isa = PBXGroup;
+			children = (
+				951615DF239FF51800F325CD /* Applicant+CoreDataClass.swift */,
+				951615E0239FF51800F325CD /* Applicant+CoreDataProperties.swift */,
+				951615E1239FF51800F325CD /* Job+CoreDataClass.swift */,
+				951615E2239FF51800F325CD /* Job+CoreDataProperties.swift */,
+				951615E3239FF51800F325CD /* Reference+CoreDataClass.swift */,
+				951615E4239FF51800F325CD /* Reference+CoreDataProperties.swift */,
+			);
+			name = "CoreData Objects";
+			path = "../CoreData Objects";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,8 +290,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				951615AF239ED53000F325CD /* ResumeDetailViewController.swift in Sources */,
+				951615E7239FF51800F325CD /* Job+CoreDataClass.swift in Sources */,
 				951615AB239ED53000F325CD /* AppDelegate.swift in Sources */,
+				951615E5239FF51800F325CD /* Applicant+CoreDataClass.swift in Sources */,
+				951615E9239FF51800F325CD /* Reference+CoreDataClass.swift in Sources */,
+				951615EA239FF51800F325CD /* Reference+CoreDataProperties.swift in Sources */,
 				951615DE239ED5C000F325CD /* ResumeSectionTableViewController.swift in Sources */,
+				951615E8239FF51800F325CD /* Job+CoreDataProperties.swift in Sources */,
+				951615E6239FF51800F325CD /* Applicant+CoreDataProperties.swift in Sources */,
 				951615B5239ED53000F325CD /* ResumeBuilder.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
