@@ -22,6 +22,7 @@ extension Job {
     @NSManaged public var endDate: Date?
     @NSManaged public var responsibilities: String?
     @NSManaged public var awards: String?
+    @NSManaged public var companyIcon: NSObject?
     @NSManaged public var employees: NSSet?
 
 }

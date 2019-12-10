@@ -17,11 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         
+        //MARK: SplitView Controller Initialization
+        
         //initate root view Controllers
         let sectionTableViewController = ResumeSectionTableViewController()
         let detailViewController = ResumeDetailViewController()
         
-        //Embed in Navigation controllers
+        //Embed rootVC's in Navigation controllers
         let masterNavigationView = UINavigationController(rootViewController: sectionTableViewController)
         let detailNavigationView = UINavigationController(rootViewController: detailViewController)
         
@@ -30,14 +32,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         splitViewController.viewControllers = [masterNavigationView, detailNavigationView]
         splitViewController.preferredPrimaryColumnWidthFraction = 1/3
         
-        //RootView of Window
         window?.rootViewController = splitViewController
         window?.makeKeyAndVisible()
-        
         return true
     }
 
-    // MARK: - Core Data stack
+    //MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {
         /*
@@ -65,9 +65,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         return container
     }()
-
-    // MARK: - Core Data Saving support
-
+    
+    //MARK: Core Data Flexi-Fetch
+    
+    func fetch<T: NSManagedObject>(_ objectType: T.Type) -> [T] {
+        let context = persistentContainer.viewContext
+        
+        let entityName = String(describing: objectType)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        do {
+            let fetchedObjects = try context.fetch(fetchRequest) as? [T]
+            return fetchedObjects ?? [T]()
+        } catch {
+            print(error)
+            return [T]()
+        }
+    }
+    
+    //MARK: Core Data Saving support
+    
     func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {

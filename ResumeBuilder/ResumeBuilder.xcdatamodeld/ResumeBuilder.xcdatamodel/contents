@@ -12,6 +12,7 @@
     </entity>
     <entity name="Job" representedClassName="Job" syncable="YES">
         <attribute name="awards" optional="YES" attributeType="String"/>
+        <attribute name="companyIcon" optional="YES" attributeType="Transformable"/>
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="positionTitle" optional="YES" attributeType="String"/>
         <attribute name="responsibilities" optional="YES" attributeType="String"/>
@@ -26,7 +27,7 @@
     </entity>
     <elements>
         <element name="Applicant" positionX="-63" positionY="-18" width="128" height="163"/>
-        <element name="Job" positionX="-54" positionY="54" width="128" height="133"/>
+        <element name="Job" positionX="-54" positionY="54" width="128" height="148"/>
         <element name="Reference" positionX="-36" positionY="63" width="128" height="103"/>
     </elements>
 </model>

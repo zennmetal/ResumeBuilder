@@ -15,11 +15,19 @@
 */
 import UIKit
 
+protocol ResumeSectionDelegate {
+    func didSelectNewSection()
+}
+
 class ResumeSectionTableViewController: UITableViewController {
 
+    let cellID = "cellID"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Register cell reuseIdentifier
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
         self.clearsSelectionOnViewWillAppear = false
 
     }
@@ -27,7 +35,6 @@ class ResumeSectionTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        
         return 4
     }
     
@@ -43,12 +50,46 @@ class ResumeSectionTableViewController: UITableViewController {
         
         return 1
     }
-
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60.0
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard section != 1 else {
+            return "Experience"
+        }
+        guard section != 2 else {
+            return "Skills"
+        }
+        guard section != 3 else {
+            return "References"
+        }
+        return "Profile"
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
         
         // each cell will contain 2 Labels (title, and description), and a UIImage (visible for Experience section only)
+        let titleLabel = UILabel(frame: CGRect(x: 30, y: 0.0, width: cell.frame.width-30, height: cell.frame.height*0.75))
+        titleLabel.tag = 99
+        titleLabel.text = "Title"
+        titleLabel.font = titleLabel.font.withSize(23.0)
+        titleLabel.adjustsFontForContentSizeCategory = true
+        
+        let detailLabel = UILabel(frame: CGRect(x: 40, y: cell.frame.height-25.0, width: cell.frame.width-40, height: cell.frame.height/3))
+        detailLabel.tag = 99
+        detailLabel.text = "Detail"
+        detailLabel.font = detailLabel.font.withSize(15.0)
+        detailLabel.adjustsFontForContentSizeCategory = true
+        
+        let imageView = UIImageView(frame:CGRect(x:0, y:0, width: cell.frame.height*0.95, height: cell.frame.height*0.95))
+        imageView.tag = 99
+        
+        
+        cell.contentView.addSubview(titleLabel)
+        cell.contentView.addSubview(detailLabel)
         
         
         return cell
@@ -69,4 +110,9 @@ class ResumeSectionTableViewController: UITableViewController {
     }
     */
 
+}
+
+//MARK: - UITABLEVIEWCELL Extension
+extension UITableViewCell {
+    
 }

@@ -8,13 +8,15 @@
 
 import UIKit
 
-class ResumeDetailViewController: UIViewController {
+class ResumeDetailViewController: UIViewController, ResumeSectionDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
-
+    func didSelectNewSection() {
+        //update self, based on selected section
+    }
 }
 
