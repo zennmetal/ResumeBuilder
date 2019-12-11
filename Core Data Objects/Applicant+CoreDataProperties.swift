@@ -2,7 +2,7 @@
 //  Applicant+CoreDataProperties.swift
 //  ResumeBuilder
 //
-//  Created by Matthew Mauro on 2019-12-10.
+//  Created by Matthew Mauro on 2019-12-11.
 //  Copyright © 2019 Matthew Mauro. All rights reserved.
 //
 //
@@ -17,11 +17,11 @@ extension Applicant {
         return NSFetchRequest<Applicant>(entityName: "Applicant")
     }
 
-    @NSManaged public var name: String?
-    @NSManaged public var profileString: String?
-    @NSManaged public var phoneNumber: Int16
-    @NSManaged public var emailAddress: String?
     @NSManaged public var desiredPosition: String?
+    @NSManaged public var emailAddress: String?
+    @NSManaged public var name: String?
+    @NSManaged public var phoneNumber: String?
+    @NSManaged public var profileString: String?
     @NSManaged public var skills: String?
     @NSManaged public var experience: NSOrderedSet?
     @NSManaged public var references: NSOrderedSet?

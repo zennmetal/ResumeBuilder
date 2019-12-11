@@ -17,11 +17,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         
+        //find an applicant to show, or create one, before initalizing the root views
+        let fetchedApplicants = self.fetch(Applicant.self)
+        if fetchedApplicants.count == 0 {
+            //no applicant data found, createDummy Data
+            print("no applicants found")
+        }
+        
         //MARK: SplitView Controller Initialization
         
         //initate root view Controllers
         let sectionTableViewController = ResumeSectionTableViewController()
         let detailViewController = ResumeDetailViewController()
+        sectionTableViewController.sectionDetailDelegate = detailViewController
         
         //Embed rootVC's in Navigation controllers
         let masterNavigationView = UINavigationController(rootViewController: sectionTableViewController)
@@ -31,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let splitViewController = UISplitViewController()
         splitViewController.viewControllers = [masterNavigationView, detailNavigationView]
         splitViewController.preferredPrimaryColumnWidthFraction = 1/3
+        
         
         window?.rootViewController = splitViewController
         window?.makeKeyAndVisible()
@@ -98,5 +107,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    //MARK: - Applicant Data creation
+    //create an Applicant, named Wayne Gretzky. list the teams he played for, awards won, and various skills
+    func createWayne() {
+        let theGreatOne = Applicant(context: self.persistentContainer.viewContext)
+        
+        theGreatOne.name = "Wayne Gretzky"
+        theGreatOne.phoneNumber = "416-999-9999"
+        theGreatOne.profileString =
+        "   Wayne Douglas Gretzky is a Canadian former professional ice hockey player and former head coach. He played 20 seasons in the National Hockey League (NHL) for four teams from 1979 to 1999. Nicknamed 'The Great One', he has been called 'the greatest hockey player ever' by many sportswriters, players, and the NHL itself. Gretzky is the leading scorer in NHL history, with more goals and assists than any other player. He garnered more assists than any other player scored total points, and is the only NHL player to total over 200 points in one season – a feat he accomplished four times. In addition, Gretzky tallied over 100 points in 16 professional seasons, 14 of them consecutive. At the time of his retirement in 1999 and persisting through 2017, he holds 61 NHL records: 40 regular season records, 15 playoff records, and 6 All-Star records"
+        let edmontonOilers = Job(context: self.persistentContainer.viewContext)
+        edmontonOilers.comoanyName = "Edmonton Oilers"
+        edmontonOilers.companyIcon = UIImage(named: "oilers")
+        edmontonOilers.positionTitle = "Superstar Centerman & Captain"
+        
+        
+    }
+    
 }
 

@@ -17,6 +17,7 @@ extension Job {
         return NSFetchRequest<Job>(entityName: "Job")
     }
 
+    @NSManaged public var comoanyName: String?
     @NSManaged public var positionTitle: String?
     @NSManaged public var startDate: Date?
     @NSManaged public var endDate: Date?

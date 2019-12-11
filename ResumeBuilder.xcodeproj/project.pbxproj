@@ -17,11 +17,11 @@
 		951615D0239ED53300F325CD /* ResumeBuilderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951615CF239ED53300F325CD /* ResumeBuilderUITests.swift */; };
 		951615DE239ED5C000F325CD /* ResumeSectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951615DD239ED5C000F325CD /* ResumeSectionTableViewController.swift */; };
 		951615F4239FF9BA00F325CD /* Applicant+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951615EE239FF9BA00F325CD /* Applicant+CoreDataClass.swift */; };
-		951615F5239FF9BA00F325CD /* Applicant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951615EF239FF9BA00F325CD /* Applicant+CoreDataProperties.swift */; };
 		951615F6239FF9BA00F325CD /* Job+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951615F0239FF9BA00F325CD /* Job+CoreDataClass.swift */; };
 		951615F7239FF9BA00F325CD /* Job+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951615F1239FF9BA00F325CD /* Job+CoreDataProperties.swift */; };
 		951615F8239FF9BA00F325CD /* Reference+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951615F2239FF9BA00F325CD /* Reference+CoreDataClass.swift */; };
 		951615F9239FF9BA00F325CD /* Reference+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951615F3239FF9BA00F325CD /* Reference+CoreDataProperties.swift */; };
+		956AD03E23A1330D007A8721 /* Applicant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956AD03D23A1330D007A8721 /* Applicant+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,11 +58,11 @@
 		951615D1239ED53300F325CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		951615DD239ED5C000F325CD /* ResumeSectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeSectionTableViewController.swift; sourceTree = "<group>"; };
 		951615EE239FF9BA00F325CD /* Applicant+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Applicant+CoreDataClass.swift"; sourceTree = "<group>"; };
-		951615EF239FF9BA00F325CD /* Applicant+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Applicant+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		951615F0239FF9BA00F325CD /* Job+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Job+CoreDataClass.swift"; sourceTree = "<group>"; };
 		951615F1239FF9BA00F325CD /* Job+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Job+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		951615F2239FF9BA00F325CD /* Reference+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reference+CoreDataClass.swift"; sourceTree = "<group>"; };
 		951615F3239FF9BA00F325CD /* Reference+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reference+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		956AD03D23A1330D007A8721 /* Applicant+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Applicant+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,7 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				951615EE239FF9BA00F325CD /* Applicant+CoreDataClass.swift */,
-				951615EF239FF9BA00F325CD /* Applicant+CoreDataProperties.swift */,
+				956AD03D23A1330D007A8721 /* Applicant+CoreDataProperties.swift */,
 				951615F0239FF9BA00F325CD /* Job+CoreDataClass.swift */,
 				951615F1239FF9BA00F325CD /* Job+CoreDataProperties.swift */,
 				951615F2239FF9BA00F325CD /* Reference+CoreDataClass.swift */,
@@ -293,10 +293,10 @@
 				951615AB239ED53000F325CD /* AppDelegate.swift in Sources */,
 				951615F4239FF9BA00F325CD /* Applicant+CoreDataClass.swift in Sources */,
 				951615F8239FF9BA00F325CD /* Reference+CoreDataClass.swift in Sources */,
+				956AD03E23A1330D007A8721 /* Applicant+CoreDataProperties.swift in Sources */,
 				951615F9239FF9BA00F325CD /* Reference+CoreDataProperties.swift in Sources */,
 				951615DE239ED5C000F325CD /* ResumeSectionTableViewController.swift in Sources */,
 				951615F7239FF9BA00F325CD /* Job+CoreDataProperties.swift in Sources */,
-				951615F5239FF9BA00F325CD /* Applicant+CoreDataProperties.swift in Sources */,
 				951615B5239ED53000F325CD /* ResumeBuilder.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
