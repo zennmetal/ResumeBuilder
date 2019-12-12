@@ -34,7 +34,6 @@ class ResumeSectionTableViewController: UITableViewController {
         
         //Register cell reuseIdentifier
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
-        
         self.clearsSelectionOnViewWillAppear = false
     }
 
@@ -46,13 +45,16 @@ class ResumeSectionTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard section != 1 else {
-            return 3
+            return (currentApplicant?.experience!.count)!
+        }
+        guard section != 3 else {
+            return ((currentApplicant?.references!.count)!)
         }
         return 1
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard indexPath.section == 1 else {
+        guard indexPath.section != 0 else {
             return 120.0
         }
         return 65.0
@@ -83,7 +85,7 @@ class ResumeSectionTableViewController: UITableViewController {
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.tag = 99
-        titleLabel.text = "Title"
+        titleLabel.text = self.titleFor(indexPath)
         titleLabel.font = titleLabel.font.withSize(23.0)
         titleLabel.adjustsFontForContentSizeCategory = true
         titleLabel.textAlignment = .right
@@ -91,7 +93,8 @@ class ResumeSectionTableViewController: UITableViewController {
         let detailLabel = UILabel()
         detailLabel.translatesAutoresizingMaskIntoConstraints = false
         detailLabel.tag = 98
-        detailLabel.text = "Detail"
+        detailLabel.numberOfLines = 3
+        detailLabel.text = self.detailStringFor(indexPath)
         detailLabel.font = detailLabel.font.withSize(15.0)
         detailLabel.adjustsFontForContentSizeCategory = true
         detailLabel.textAlignment = .right
@@ -99,8 +102,9 @@ class ResumeSectionTableViewController: UITableViewController {
         let imageView = UIImageView()
         imageView.tag = 97
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = #imageLiteral(resourceName: "kings")
+        imageView.image = self.imageForIndexPath(indexPath)
         imageView.contentMode = .scaleAspectFit
+        imageView.isHidden = false
         
         cell.contentView.addSubview(titleLabel)
         cell.contentView.addSubview(detailLabel)
@@ -109,10 +113,17 @@ class ResumeSectionTableViewController: UITableViewController {
         //addConstraints now that subviews are under cell heirarchy
         //trailing
         titleLabel.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor, constant: -5).isActive = true
-        detailLabel.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor, constant: -15).isActive = true
+        detailLabel.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor, constant: -5).isActive = true
         
         //leading
-        imageView.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor, constant: 5).isActive = true
+        imageView.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor, constant: 15).isActive = true
+        if indexPath.section == 1 {
+            detailLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 5).isActive = true
+            titleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 5).isActive = true
+            detailLabel.adjustsFontSizeToFitWidth = true
+        } else {
+            detailLabel.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor, constant: 5).isActive = true
+        }
         
         //top
         titleLabel.topAnchor.constraint(equalTo: cell.contentView.topAnchor, constant: 5).isActive = true
@@ -152,6 +163,26 @@ class ResumeSectionTableViewController: UITableViewController {
             // function call to make sure the detail view is shown on iPhone in portrait mode
             splitViewController?.showDetailViewController(detailVC, sender: nil)
         }
+    }
+    
+    //MARK: Data for IndexPath
+    func imageForIndexPath(_ path:IndexPath) -> UIImage? {
+        guard path.section == 1 else { return nil }
+        
+        return (currentApplicant?.experience![path.row] as? Job)?.companyIcon as? UIImage
+    }
+    func titleFor(_ path:IndexPath) -> String {
+        guard path.section != 0 else { return currentApplicant?.name ?? "" }
+        guard path.section != 1 else { return (currentApplicant?.experience![path.row] as? Job)?.companyName ?? "" }
+        guard path.section != 3 else { return (currentApplicant?.references![path.row] as? Reference)?.name ?? "" }
+        return ""
+    }
+    func detailStringFor(_ path:IndexPath) -> String {
+        guard path.section != 0 else { return "\t\(currentApplicant?.profileString ?? "")" }
+        guard path.section != 1 else { return (currentApplicant?.experience![path.row] as? Job)?.positionTitle ?? "" }
+        guard path.section != 2 else { return currentApplicant?.skills ?? "" }
+        guard path.section != 3 else { return (currentApplicant?.references![path.row] as? Reference)?.phoneNumber ?? "" }
+        return ""
     }
     
 }

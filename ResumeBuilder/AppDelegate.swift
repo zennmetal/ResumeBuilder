@@ -17,11 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         
+        var chosenApplicant:Applicant?
+        
         //find an applicant to show, or create one, before initalizing the root views
         let fetchedApplicants = self.fetch(Applicant.self)
         if fetchedApplicants.count == 0 {
             //no applicant data found, createDummy Data
-            print("no applicants found")
+            chosenApplicant = self.createWayne()
+            self.saveContext()
+        } else {
+            chosenApplicant = fetchedApplicants.first
         }
         
         //MARK: SplitView Controller Initialization
@@ -29,7 +34,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //initate root view Controllers
         let sectionTableViewController = ResumeSectionTableViewController()
         let detailViewController = ResumeDetailViewController()
+        
         sectionTableViewController.sectionDetailDelegate = detailViewController
+        sectionTableViewController.currentApplicant = chosenApplicant
+        detailViewController.currentApplicant = chosenApplicant
         
         //Embed rootVC's in Navigation controllers
         let masterNavigationView = UINavigationController(rootViewController: sectionTableViewController)
@@ -39,8 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let splitViewController = UISplitViewController()
         splitViewController.viewControllers = [masterNavigationView, detailNavigationView]
         splitViewController.preferredPrimaryColumnWidthFraction = 1/3
-        
-        
+        splitViewController.preferredDisplayMode = .allVisible
         window?.rootViewController = splitViewController
         window?.makeKeyAndVisible()
         return true
@@ -109,20 +116,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     //MARK: - Applicant Data creation
     //create an Applicant, named Wayne Gretzky. list the teams he played for, awards won, and various skills
-    func createWayne() {
-        let theGreatOne = Applicant(context: self.persistentContainer.viewContext)
+    func createWayne() -> Applicant {
+        var theGreatOne:Applicant?
+        theGreatOne = Applicant(context: self.persistentContainer.viewContext)
         
-        theGreatOne.name = "Wayne Gretzky"
-        theGreatOne.phoneNumber = "416-999-9999"
-        theGreatOne.profileString =
-        "   Wayne Douglas Gretzky is a Canadian former professional ice hockey player and former head coach. He played 20 seasons in the National Hockey League (NHL) for four teams from 1979 to 1999. Nicknamed 'The Great One', he has been called 'the greatest hockey player ever' by many sportswriters, players, and the NHL itself. Gretzky is the leading scorer in NHL history, with more goals and assists than any other player. He garnered more assists than any other player scored total points, and is the only NHL player to total over 200 points in one season – a feat he accomplished four times. In addition, Gretzky tallied over 100 points in 16 professional seasons, 14 of them consecutive. At the time of his retirement in 1999 and persisting through 2017, he holds 61 NHL records: 40 regular season records, 15 playoff records, and 6 All-Star records"
+        theGreatOne!.name = "Wayne Gretzky"
+        theGreatOne!.phoneNumber = "416-999-9999"
+        theGreatOne!.profileString =
+        "Wayne Douglas Gretzky is a Canadian former professional ice hockey player and former head coach. He played 20 seasons in the National Hockey League (NHL) for four teams from 1979 to 1999. Nicknamed 'The Great One', he has been called 'the greatest hockey player ever' by many sportswriters, players, and the NHL itself. Gretzky is the leading scorer in NHL history, with more goals and assists than any other player. He garnered more assists than any other player scored total points, and is the only NHL player to total over 200 points in one season – a feat he accomplished four times. In addition, Gretzky tallied over 100 points in 16 professional seasons, 14 of them consecutive. At the time of his retirement in 1999 and persisting through 2017, he holds 61 NHL records: 40 regular season records, 15 playoff records, and 6 All-Star records"
         let edmontonOilers = Job(context: self.persistentContainer.viewContext)
-        edmontonOilers.comoanyName = "Edmonton Oilers"
+        edmontonOilers.companyName = "Edmonton Oilers"
         edmontonOilers.companyIcon = UIImage(named: "oilers")
-        edmontonOilers.positionTitle = "Superstar Centerman & Captain"
+        edmontonOilers.positionTitle = "Superstar Captain & Centerman"
+        edmontonOilers.startDate = self.dateFromString(10, 01, 1979)
+        edmontonOilers.endDate = self.dateFromString(8, 9, 1988)
+        edmontonOilers.awards = "8 Hart Memorial Trophies, 7 Art Ross Trophies, 2 Con Smythe Trophies, 5 Stanley Cup Championships, and 1 Lady Bing Trophy"
+        theGreatOne?.addToExperience(edmontonOilers)
         
+        let laKings = Job(context: self.persistentContainer.viewContext)
+        laKings.companyName = "Los Angeles Kings"
+        laKings.companyIcon = UIImage(named: "kings")
+        laKings.positionTitle = "Alternate Captain & Centerman"
+        laKings.startDate = self.dateFromString(8, 9, 1988)
+        laKings.endDate = self.dateFromString(2, 27, 1996)
+        theGreatOne?.addToExperience(laKings)
         
+        let blues = Job(context: self.persistentContainer.viewContext)
+        blues.companyName = "St.Louis Blues"
+        blues.companyIcon = UIImage(named: "blues")
+        
+        theGreatOne?.addToExperience(blues)
+        
+        return theGreatOne!
     }
     
+    //MARK: Date Formatting
+    func dateFromString(_ month:Int,_ day:Int,_ year:Int) -> Date? {
+        guard month < 12 && day < 31 else { return nil }
+        
+        var date:Date?
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd, yyyy"
+        
+        date = dateFormatter.date(from: "\(month) \(day), \(year)")
+        
+        return date
+    }
 }
 
